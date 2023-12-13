@@ -16,22 +16,24 @@ public class KeybordMovement : MonoBehaviour
     void Update()
     {
         Vector3 position = characterTransform.position;
-        if (Input.GetKey("up"))
+        if (Input.GetKey("up") || Input.GetKey(KeyCode.W))
         {
             position.x = position.x + speed;
         }
-        if (Input.GetKey("down"))
+        if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
         {
             position.x = position.x - speed;
         }
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
         {
             position.z = position.z + speed;
         }
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
         {
             position.z = position.z - speed;
         }
         characterTransform.position = position;
+
+
     }
 }

@@ -5,35 +5,44 @@ using UnityEngine;
 public class KeybordMovement : MonoBehaviour
 {
     public Transform characterTransform;
+    public Transform cameraTransform; // Reference to the camera transform
     public float speed;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Vector3 position = characterTransform.position;
+        Vector3 moveDirection = Vector3.zero;
+
+        // Get the forward and right vectors of the camera
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+        forward.y = 0f; // Keep the direction in the XZ plane
+        right.y = 0f;
+
+        // Normalize the vectors to ensure consistent speed in all directions
+        forward.Normalize();
+        right.Normalize();
+
         if (Input.GetKey("up") || Input.GetKey(KeyCode.W))
         {
-            position.x = position.x + speed;
+            moveDirection += forward;
         }
         if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
         {
-            position.x = position.x - speed;
+            moveDirection -= forward;
         }
         if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
         {
-            position.z = position.z + speed;
+            moveDirection -= right;
         }
         if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
         {
-            position.z = position.z - speed;
+            moveDirection += right;
         }
-        characterTransform.position = position;
 
+        // Normalize the movement direction to ensure consistent speed
+        moveDirection.Normalize();
 
+        // Apply the movement
+        characterTransform.position += moveDirection * speed * Time.deltaTime;
     }
 }

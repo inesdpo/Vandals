@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlaneToButton : MonoBehaviour
 {
-    private void Update()
+    /*private void Update()
     {
         Vector3 planeposition = transform.position;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -14,7 +14,12 @@ public class PlaneToButton : MonoBehaviour
             Debug.Log("Hit something");
             GetComponent<PlaneToButton>().OnMouseDown();
         }
-    }
+    }*/
+    /*void OnMouseOver()
+    {
+        Vector3 planeposition = transform.position;
+    }*/
+
     [SerializeField] private GameObject objectToDeactivate;
     [SerializeField] private GameObject objectToActivate;
     void OnMouseDown()
